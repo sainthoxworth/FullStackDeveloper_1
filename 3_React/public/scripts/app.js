@@ -35,17 +35,31 @@ function getDescription(description) {
   return description ? description : "no-description";
 }
 
-var template = /*#__PURE__*/React.createElement("div", {
-  id: "productDetail"
-}, /*#__PURE__*/React.createElement("h1", {
-  id: "productName"
-}, "Name : ", product.name ? product.name : "no-name"), /*#__PURE__*/React.createElement("p", {
-  id: "productPrice"
-}, "Price : ", product.price == 0 ? "free" : product.price), /*#__PURE__*/React.createElement("p", {
-  id: "productDescription"
-}, getDescription(product.description)), /*#__PURE__*/React.createElement("p", null, product.type.length ? product.type.length + " tip var" : "seçenek yok"), /*#__PURE__*/React.createElement("p", null, product.type.map(function (item) {
-  return /*#__PURE__*/React.createElement("p", null, item);
-})));
-/* React DOM */
+var number = 0;
 
-ReactDOM.render(template, root);
+function artiBir() {
+  number++;
+  renderApp();
+  console.log("arttı");
+}
+
+function renderApp() {
+  var template = /*#__PURE__*/React.createElement("div", {
+    id: "productDetail"
+  }, /*#__PURE__*/React.createElement("h1", null, "Number: ", number), /*#__PURE__*/React.createElement("button", {
+    id: "btnArttir",
+    onClick: artiBir
+  }, "+1"), /*#__PURE__*/React.createElement("button", {
+    id: "btnAzalt",
+    onClick: function onClick() {
+      number != 0 ? number-- : alert("number değeri 0");
+      renderApp();
+      console.log("azaldı");
+    }
+  }, "-1"));
+  /* React DOM - 18. Slayt */
+
+  ReactDOM.render(template, root);
+}
+
+renderApp();

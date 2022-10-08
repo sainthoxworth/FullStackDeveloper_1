@@ -32,10 +32,15 @@ function getDescription(description) {
     return description ? description : "no-description"
 }
 
-var template =
-    <div id="productDetail">
-        <h1 id="productName">Name : {product.name ? product.name : "no-name"}</h1>
-        {/* <p id="productPrice">Price : {formatPrice2(product)}</p> */}
+var number = 0;
+
+function artiBir() { number++; renderApp(); console.log("arttı"); }
+
+function renderApp() {
+    var template =
+        <div id="productDetail">
+            {/* <h1 id="productName">Name : {product.name ? product.name : "no-name"}</h1>
+        <p id="productPrice">Price : {formatPrice2(product)}</p>
         <p id="productPrice">Price : {product.price == 0 ? "free" : product.price}</p>
         <p id="productDescription">{getDescription(product.description)}</p>
         <p>{product.type.length ? product.type.length + " tip var" : "seçenek yok"}</p>
@@ -43,8 +48,21 @@ var template =
             {
                 product.type.map((item)=> <p>{item}</p>)
             }
-        </p>
-    </div>;
+        </p> */}
+            <h1>Number: {number}</h1>
+            <button id="btnArttir" onClick={artiBir}>+1</button>
+            <button id="btnAzalt"
+                onClick={
+                    () => {
+                        number != 0 ? number-- : alert("number değeri 0");
+                        renderApp();
+                        console.log("azaldı")
+                    }
+                }>-1</button>
+        </div>;
+    /* React DOM - 18. Slayt */
+    ReactDOM.render(template, root);
+}
 
-/* React DOM */
-ReactDOM.render(template, root);
+renderApp();
+
