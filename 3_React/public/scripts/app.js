@@ -12,24 +12,40 @@ function formatPrice(p) {
 }
 
 var product = {
-  name: "Samsung S10",
+  name: "",
   price: 4000,
-  description: "bu bir telefon"
+  description: "bu bir telefon",
+  type: ["red", "blue"]
 };
 
 function formatPrice2(p) {
   return p.price + " TL";
 }
 
+function getDescription(description) {
+  /*if(description) {
+      return description;
+  } else {
+      return "no-description";
+  }*/
+
+  /*if(description) {
+      return <h5 style={{color: "red"}}>Description : {description}</h5>
+  } */
+  return description ? description : "no-description";
+}
+
 var template = /*#__PURE__*/React.createElement("div", {
   id: "productDetail"
 }, /*#__PURE__*/React.createElement("h1", {
   id: "productName"
-}, "Name : ", productName), /*#__PURE__*/React.createElement("p", {
+}, "Name : ", product.name ? product.name : "no-name"), /*#__PURE__*/React.createElement("p", {
   id: "productPrice"
-}, "Price : ", formatPrice2(product)), /*#__PURE__*/React.createElement("p", {
+}, "Price : ", product.price == 0 ? "free" : product.price), /*#__PURE__*/React.createElement("p", {
   id: "productDescription"
-}, "Description : ", productDescription));
+}, getDescription(product.description)), /*#__PURE__*/React.createElement("p", null, product.type.length ? product.type.length + " tip var" : "seçenek yok"), /*#__PURE__*/React.createElement("p", null, product.type.map(function (item) {
+  return /*#__PURE__*/React.createElement("p", null, item);
+})));
 /* React DOM */
 
 ReactDOM.render(template, root);
