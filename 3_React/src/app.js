@@ -3,7 +3,7 @@ var root = document.getElementById("root");
 /* JSX - Javascript XML = JS içindeki etiketleri birer obje gibi yazmamızı sağlıyor */
 var productName = "Samsung S10";
 var productPrice = 4000;
-var productDescription = "bu bir telefon";
+var productDescription = "bu bir telefon"
 
 function formatPrice(p) {
     return p + " TL";
