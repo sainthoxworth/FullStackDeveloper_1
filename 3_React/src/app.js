@@ -1,11 +1,8 @@
 var root = document.getElementById("root");
 
+/* JSX - Javascript XML = JS içindeki etiketleri birer obje gibi yazmamızı sağlıyor */
+var template = <h1>My first react app!</h1>;
 /* React */
-var template = React.createElement(
-    'h1',
-    null,
-    'My first react app!'
-);
 
 /* React DOM */
 ReactDOM.render(template, root);
