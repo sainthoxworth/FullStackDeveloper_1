@@ -1,84 +1,80 @@
-const root = document.getElementById("root");
+var root = document.getElementById("root");
 
-var app = {
-    title: "ToDo App",
-    description: "Lorem, ipsum.",
-    items: [
-        "Lorem.",
-        "Lorem, ipsum.",
-        "Lorem, ipsum dolor."
-    ]
-    //items: [];
-};
+/* JSX - Javascript XML = JS içindeki etiketleri birer obje gibi yazmamızı sağlıyor */
+var productName = "Samsung S10";
+var productPrice = 4000;
+var productDescription = "bu bir telefon";
 
-function onFormSubmit(event) {
-    event.preventDefault();
-    /* document.getElementById("txtItem").value; 
-       console.log(event);
-     */
-    var item = event.target.elements.txtItem.value;
-    if (item != '') {
-        app.items.push(item);
-        event.target.elements.txtItem.value = "";
-        render()
-    } else {
-        alert("item boş olamaz");
-    }
+function formatPrice(p) {
+    return p + " TL";
 }
 
-function render() {
+var product = {
+    name: "",
+    price: 4000,
+    description: "bu bir telefon",
+    type: ["red", "blue"]
+}
+
+function formatPrice2(p) {
+    return p.price + " TL";
+}
+
+function getDescription(description) {
+    /*if(description) {
+        return description;
+    } else {
+        return "no-description";
+    }*/
+    /*if(description) {
+        return <h5 style={{color: "red"}}>Description : {description}</h5>
+    } */
+    return description ? description : "no-description"
+}
+
+var number = 0;
+
+function artiBir() { number++; renderApp(); console.log("arttı"); }
+var dateTime = new Date().toLocaleTimeString();
+function renderApp() {
     var template =
-        (
-            <div>
-                <div>{app.title}</div>
-                <div>{app.description}</div>
-                <ul>
-                    {
-                        app.items.map((item, index) =>
-                            <li key={index}>{item}</li>
-                        )
+        <div id="productDetail">
+            {/* <h1 id="productName">Name : {product.name ? product.name : "no-name"}</h1>
+        <p id="productPrice">Price : {formatPrice2(product)}</p>
+        <p id="productPrice">Price : {product.price == 0 ? "free" : product.price}</p>
+        <p id="productDescription">{getDescription(product.description)}</p>
+        <p>{product.type.length ? product.type.length + " tip var" : "seçenek yok"}</p>
+        <p>
+            {
+                product.type.map((item)=> <p>{item}</p>)
+            }
+        </p> */}
+            <h1>Number: {number}</h1>
+            <button id="btnArttir" onClick={artiBir}>+1</button>
+            <button id="btnAzalt"
+                onClick={
+                    () => {
+                        number != 0 ? number-- : alert("number değeri 0");
+                        renderApp();
+                        console.log("azaldı")
                     }
-                </ul>
-                <p>
-                    <button onClick={() => {
-                        app.items = [];
-                        /* app.items.length = 0 
-                           app.items.splice(0, app.items.length)
-                        */
-                        render();
-                    }}>Clear Items</button>
-                </p>
-                <p>{app.items.length}</p>
-                <form onSubmit={onFormSubmit}>
-                    <input type="text" name="txtItem" id="txtItem" />
-                    <button type="submit">Add Item</button>
-                </form>
-            </div>
-        );
+                }>-1</button>
+            <div>{dateTime}</div>
+        </div>;
+    /* React DOM - 18. Slayt */
     ReactDOM.render(template, root);
 }
 
-render();
+renderApp();
 
-/* ES6 Const & Let */
-var nameVar = "Kamil KAPLAN";
-var nameVar = "Melih KAPLAN";
-console.log(nameVar);
-
-let nameLet = "Kamil KAPLAN";
-//let nameLet = "Melih KAPLAN";
-console.log(nameLet);
-
-const nameConst = "Kamil KAPLAN";
-//nameConst = "Kamil";
-console.log(nameConst);
-
-let age = 29;
-
-
-function getAge() {
-    let name = "Kamil";
-    let age = 29;
-    console.log("fuction scope : ", name, age);
+function tick() {
+    var element =
+    (
+        <div>
+            <h2>Saat : {new Date().toLocaleTimeString()} </h2>
+        </div>
+    );
+    ReactDOM.render(element, root);
 }
-getAge();
+
+setInterval(tick, 1000)
